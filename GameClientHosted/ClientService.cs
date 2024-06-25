@@ -20,7 +20,7 @@ public class ClientService : IHostedService
     public Task StartAsync(CancellationToken cancellationToken)
     {
         Thread.Sleep(5000);
-        StartClients("127.0.0.1", 1337, 10, 0);
+        StartClients("127.0.0.1", 1337, 10);
 
         DoWork(null);
         
@@ -50,6 +50,7 @@ public class ClientService : IHostedService
                     {
                         string message = $"Message {i}";
                         byte[] messageBytes = Encoding.ASCII.GetBytes(message);
+
                         client.Send(new ArraySegment<byte>(messageBytes));
                     }
 
@@ -87,7 +88,7 @@ public class ClientService : IHostedService
         return Task.CompletedTask;
     }
 
-    public void StartClients(string host, int port, int clientAmount, int seconds)
+    public void StartClients(string host, int port, int clientAmount)
     {
         Log.Error("[Telepathy] Starting " + clientAmount + " clients...");
  

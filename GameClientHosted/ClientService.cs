@@ -8,6 +8,15 @@ namespace GameClientHosted;
 
 public class ClientService : IHostedService
 {
+    private System.Threading.Timer? _timer = null;
+    int clientFrequency = 14;
+    List<Client> clients = new List<Client>();
+
+    public const int MaxMessageSize = 16 * 1024;
+    static long messagesSent = 0;
+    static long messagesReceived = 0;
+    static long dataReceived = 0;
+
     public Task StartAsync(CancellationToken cancellationToken)
     {
         Thread.Sleep(5000);
@@ -16,24 +25,41 @@ public class ClientService : IHostedService
         return Task.CompletedTask;
     }
 
+    private void DoWork(object? state)
+    {
+        foreach (Client client in clients)
+        {
+            if (client.Connected)
+            {
+                int sendCount = 1;
+                // send 2 messages each time
+                for (int i = 0; i < sendCount; i++)
+                {
+                    string message = $"Message {i}";
+                    byte[] messageBytes = Encoding.ASCII.GetBytes(message);
+                    client.Send(new ArraySegment<byte>(messageBytes));
+                }
+
+                messagesSent += sendCount;
+
+                // tick client to receive and update statistics in OnData
+                client.Tick(1);
+            }
+        }
+    }
+
     public Task StopAsync(CancellationToken cancellationToken)
     {
         return Task.CompletedTask;
     }
 
-    public const int MaxMessageSize = 16 * 1024;
-    static long messagesSent = 0;
-    static long messagesReceived = 0;
-    static long dataReceived = 0;
-
-    public static void StartClients(string host, int port, int clientAmount, int seconds)
+    public void StartClients(string host, int port, int clientAmount, int seconds)
     {
         Log.Error("[Telepathy] Starting " + clientAmount + " clients...");
 
         // start n clients and get queue messages all in this thread
 
-        int clientFrequency = 14;
-        List<Client> clients = new List<Client>();
+        
         for (int i = 0; i < clientAmount; ++i)
         {
             Client client = new Client(MaxMessageSize);

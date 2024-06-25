@@ -1,11 +1,20 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telepathy", "Telepathy\Telepathy.csproj", "{1D55A635-BC4E-4DDE-8D9A-044956F75A24}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telepathy", "Telepathy\Telepathy.csproj", "{1D55A635-BC4E-4DDE-8D9A-044956F75A24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telepathy.Tests", "Telepathy.Tests\Telepathy.Tests.csproj", "{6C338324-3555-4F6B-B72B-E8523319B05F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telepathy.Tests", "Telepathy.Tests\Telepathy.Tests.csproj", "{6C338324-3555-4F6B-B72B-E8523319B05F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadTest", "LoadTest\LoadTest.csproj", "{728EAD77-A9B7-412A-B4C9-E31066A6D4C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoadTest", "LoadTest\LoadTest.csproj", "{728EAD77-A9B7-412A-B4C9-E31066A6D4C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameServer", "GameServer\GameServer.csproj", "{2BC678BE-ACBD-45A8-8CDC-1DE426922A9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameClient", "GameClient\GameClient.csproj", "{A67C54B0-BDE6-4BF2-802E-7BD19FCD832F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServerHosted", "GameServerHosted\GameServerHosted.csproj", "{FAAD6FE5-A83E-4876-808D-958CE8DF1394}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameClientHosted", "GameClientHosted\GameClientHosted.csproj", "{1750CDDE-61E7-4B8D-A82B-33386D64E724}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,5 +34,27 @@ Global
 		{728EAD77-A9B7-412A-B4C9-E31066A6D4C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{728EAD77-A9B7-412A-B4C9-E31066A6D4C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{728EAD77-A9B7-412A-B4C9-E31066A6D4C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC678BE-ACBD-45A8-8CDC-1DE426922A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC678BE-ACBD-45A8-8CDC-1DE426922A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC678BE-ACBD-45A8-8CDC-1DE426922A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC678BE-ACBD-45A8-8CDC-1DE426922A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A67C54B0-BDE6-4BF2-802E-7BD19FCD832F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67C54B0-BDE6-4BF2-802E-7BD19FCD832F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67C54B0-BDE6-4BF2-802E-7BD19FCD832F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67C54B0-BDE6-4BF2-802E-7BD19FCD832F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAAD6FE5-A83E-4876-808D-958CE8DF1394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAAD6FE5-A83E-4876-808D-958CE8DF1394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAAD6FE5-A83E-4876-808D-958CE8DF1394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAAD6FE5-A83E-4876-808D-958CE8DF1394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1750CDDE-61E7-4B8D-A82B-33386D64E724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1750CDDE-61E7-4B8D-A82B-33386D64E724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1750CDDE-61E7-4B8D-A82B-33386D64E724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1750CDDE-61E7-4B8D-A82B-33386D64E724}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED146878-EFE0-4D32-939E-708652A692E9}
 	EndGlobalSection
 EndGlobal

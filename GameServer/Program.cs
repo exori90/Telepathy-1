@@ -1,12 +1,16 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading;
+using Telepathy;
 
-namespace Telepathy.LoadTest
+namespace GameServer
 {
-    public class RunServer
+    internal class Program
     {
+        static void Main(string[] args)
+        {
+            StartServer(1337, 0);
+        }
+
         public const int MaxMessageSize = 16 * 1024;
         static long messagesReceived = 0;
         static long dataReceived = 0;
@@ -53,7 +57,7 @@ namespace Telepathy.LoadTest
                     messagesReceived = 0;
                     dataReceived = 0;
                 }
-                
+
                 if (seconds != 0)
                 {
                     runServer = (runTimer.ElapsedMilliseconds < (seconds * 1000));

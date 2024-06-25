@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Text;
-using System.Threading;
 using System.Timers;
+using Telepathy;
 
-namespace Telepathy.LoadTest
+namespace GameClient
 {
-    public class RunClients
+    internal class Program
     {
+        public const int MaxMessageSize = 16 * 1024;
+
+        static void Main(string[] args)
+        {
+            Thread.Sleep(5000);
+            StartClients("127.0.0.1", 1337, 10, 0);
+        }
+
         static long messagesSent = 0;
         static long messagesReceived = 0;
         static long dataReceived = 0;
@@ -19,12 +24,12 @@ namespace Telepathy.LoadTest
             Log.Error("[Telepathy] Starting " + clientAmount + " clients...");
 
             // start n clients and get queue messages all in this thread
-            
+
             int clientFrequency = 14;
             List<Client> clients = new List<Client>();
             for (int i = 0; i < clientAmount; ++i)
             {
-                Client client = new Client(RunServer.MaxMessageSize);
+                Client client = new Client(MaxMessageSize);
                 // setup hook to add to statistics
                 client.OnData = data => {
                     Log.Info($"Server sends: {Encoding.ASCII.GetString(data.ToArray(), 0, data.Count)}");
@@ -53,7 +58,7 @@ namespace Telepathy.LoadTest
 
             // THIS HAPPENS IN DIFFERENT THREADS.
             // so make sure that GetNextMessage is thread safe!
-            
+
             timer.Elapsed += (object sender, ElapsedEventArgs e) =>
             {
                 foreach (Client client in clients)
@@ -80,7 +85,7 @@ namespace Telepathy.LoadTest
             timer.AutoReset = true;
             timer.Enabled = true;
 
-            if(seconds == 0)
+            if (seconds == 0)
             {
                 Console.ReadLine();
             }
@@ -88,7 +93,7 @@ namespace Telepathy.LoadTest
             {
                 Thread.Sleep(seconds * 1000);
             }
-            
+
             timer.Stop();
             timer.Dispose();
 

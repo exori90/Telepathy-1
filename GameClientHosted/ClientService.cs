@@ -19,8 +19,8 @@ public class ClientService : IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        Thread.Sleep(5000);
-        StartClients("127.0.0.1", 1337, 10);
+        Thread.Sleep(3000);
+        StartClients("127.0.0.1", 1337, 1);
 
         DoWork(null);
         
@@ -44,20 +44,8 @@ public class ClientService : IHostedService
             {
                 if (client.Connected)
                 {
-                    int sendCount = 1;
-                    // send 2 messages each time
-                    for (int i = 0; i < sendCount; i++)
-                    {
-                        string message = $"Message {i}";
-                        byte[] messageBytes = Encoding.ASCII.GetBytes(message);
-
-                        client.Send(new ArraySegment<byte>(messageBytes));
-                    }
-
-                    messagesSent += sendCount;
-
                     // tick client to receive and update statistics in OnData
-                    client.Tick(1);
+                    client.Tick(1000);
                 }
             }
         };

@@ -59,6 +59,13 @@ public class NetworkManager
     private void ServerOnConnected(int val)
     {
         Log.Info("OnConnected");
+        for (int i = 0; i < 1000; i++)
+        {
+            string message = $"OnConnected {i}";
+            byte[] messageBytes = Encoding.ASCII.GetBytes(message);
+
+            Server.Send(val, new ArraySegment<byte>(messageBytes));
+        }
     }
 
     private void ServerOnDisconnected(int val)
